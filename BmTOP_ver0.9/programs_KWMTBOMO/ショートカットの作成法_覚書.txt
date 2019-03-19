@@ -1,0 +1,11 @@
+ショートカットの作成法
+http://91stardust-atelier.hatenablog.com/entry/2016/11/17/015854
+
+端末（ターミナル）から端末を起動しコマンドを実行
+https://oshiete.goo.ne.jp/qa/6479170.html
+端末上でgnome-terminal -e lsを
+https://oshiete.goo.ne.jp/qa/7859379.html
+execコマンド
+http://itdoc.hitachi.co.jp/manuals/3020/30203S3530/JPAS0288.HTM
+
+

@@ -1,0 +1,3 @@
+# BmTOP_init.shまでの絶対パスを記入
+# ※versionに注意！！
+/mnt/c/(BmTOP_ver***までのパス)/programs_KWMTBOMO/BmTOP_init.sh

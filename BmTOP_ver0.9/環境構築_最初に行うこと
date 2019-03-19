@@ -1,0 +1,38 @@
+<最初に行うこと>
+
+#各種ファイルの準備
+
+0.Silkbase_HPより,Bomo_gene_models.gff3をDLして、
+　一行目を削除してKWMTBOMO.gff3.txtとして名前をつけて保存
+Bomo_gene_models.nucl.faもSilkbase_HPよりDLして
+　KWMTBOMO.nucl.faにrename
+
+
+#BmTOP_init.shとBmTOP_path.shのパスを絶対パスで通す
+
+1.programs_KWMTBOMOディレクトリのBmTOP_init.shをテキストエディタで開く
+
+2.BmTOP_path.shまでの絶対パスを記入
+
+
+
+[linuxの場合]
+#シンボリックリンクとBmTOP_init.shのパスを絶対パスで通す
+
+3.シンボリックリンクを右クリックして、BmTOP_init.shの絶対パスを記入
+
+4.シンボリックリンクをダブルクリックして、動けばOK！
+
+
+
+[WSL環境のUbuntu(in Windows10)の場合]
+#linux用のアイコン(.desktop)は使えない!
+
+3.BmTOPファイルに、BmTOP_init.shまでの絶対パスを記入＿※versionに注意！！
+
+4.BmTOP_ver***/windows_wslをカレントディレクトリにして(cd)、下記コマンドを実行する
+　sudo rm -f /usr/local/bin/BmTOP
+　sudo cp -f ./BmTOP /usr/local/bin
+　※/usr/local/binは、パスのつながっているところならどこでもよい
+
+5.readme_win_wsl.txtに従って、動けばOK！
