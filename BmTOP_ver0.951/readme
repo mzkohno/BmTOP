@@ -1,0 +1,155 @@
+BmTOP (Bombyx mori Tool for Ortholog Picker)
+version 0.951
+
+------------------------------------------------------------
+
+本アプリケーションには、python3とblast+(NCBI)を使用します
+事前にDLをお願いいたします
+
+
+本アプリケーションでは、下記のファイル群を使用します
+workspaceディレクトリ(カレントディレクトリ)にすべて用意してください
+
+[BmTOP]
+・KWMTBOMO.gff3.txt......Silkbase_HPよりDL(Bomo_gene_models.gff3の一行目を削除し、rename)
+・BHTOF_threshold_指定表.txt......各種thresholdを指定する
+-Trinity.fasta(assembled_data)から解析する場合
+ ・Trinity.fasta
+ ・KWMTBOMO.nucl.fa......Silkbase_HPよりDL(Bomo_gene_models.nucl.faをrename)
+ ・Blastコマンド指定表.txt
+-blast_HitTable(blast結果表)を用いる場合
+ ・tblastx_HitTable.txt......*ファイル名を左記にご変更ください
+
+[KWMT_desConecter]
+・KWMTBOMO_IDの記入があるファイル
+・KWMTBOMO.desc.txt......Silkbase_HPのLibrary_Informationを参考に作成
+[List_compariser]
+・比較に用いる2つの任意.txtファイル(queryと比較対象)
+
+
+
+*1 BmTOPは、「Trinityによるde novo assembled dataをqueryに、
+カイコGeneModels(2017)をblast+(NCBI)で解析したBLAST_Hit_Table」
+を対象として構築されております
+
+それ以外のTableを解析に用いる場合、「BmTOP_noIso」をご選択ください
+
+
+*2 本アプリケーションはlinux環境向けです
+Windowsでは仮想OSやWSLでの実行をお勧めいたします
+
+------------------------------------------------------------
+
+
+[使い方]
+0.環境構築を行う（ファイル「環境構築_最初に行うこと」参照）
+
+1.BmTOPディレクトリ内の、BmTOPアイコンをダブルクリックして起動
+
+2.立ち上がる端末の指示に従って入力を行う
+
+※ディレクトリの並びを変えると、アプリが正常に動作しなくなるので注意！！
+
+
+
+[結果]
+解析結果はresultのdataディレクトリ群に一部を除いて保存されます
+  -blastデータベースならびにblast結果はworkspaceに出力されます
+  -KWMT_desConecterとKWMT_orthlistCompariserの結果もworkspaceに出力されます
+
+
+
+[バージョンアップ情報]
+2019.03.08
+ver0.9
+・アプリケーションとしての体裁を整えた
+・Blast_HitTable_lister_noIso.pyのバグを修正
+
+2019.07.01
+ver0.95
+●cmd/_TrimA.pyの仕様変更、cmd/_TrimA_alter.pyの新規作成(TrimAの旧仕様)
+
+ <やりたいこと>	Blast_HitTable_orthfin_trimA.py(修正後)
+ AのTop HitがBのTop HitならびにSecond Hit以下にあった場合、Aのみを除外する
+ BのTop Hitが別のTop HitならびにSecond Hit以下になければ、Bは採用する
+
+ <ver0.9までの実際の仕様>	Blast_HitTable_orthfin_trimA_alter.py
+ AのTop HitがBのTop HitならびにSecond Hit以下にあった場合、AだけでなくBも除外する
+
+
+●TrimCのあとに、「カイコ単一遺伝子リストと比較する処理」を追加
+　　「cmd/ListCompariser_vsBmSG.py」（vsBmSG: vs Bombyx mori Single Gene）
+　　vsBmSGのあとに、_orthlist.txtを出力する処理を追加（元はTrimCで行っていた処理）
+
+「カイコ単一遺伝子リストと比較する処理」
+　解析結果のうち、カイコ単一遺伝子リストに存在していた項目のみを、カイコ単一遺伝子のオルソログとする
+　カイコ単一遺伝子リスト「BmSingleGeneList.txt」は、
+　デフォルトでは、カイコGeneModel2017をクエリーにして、BmTOPを行った結果のリストを使用する
+　　（デフォルト設定で処理: Threshold1 = 1e-10, Threshold2 = score 100, e-value 1e-80, Threshold3 = 1e-80）
+　　（「カイコ単一遺伝子リストと比較する処理」は行わなかった）
+　ファイル名を変えれば、任意のカイコ単一遺伝子リストを使うことが可能
+　　※カイコ単一遺伝子リストは、KWMTBOMO_IDを「カラム0」に記入すること！！
+
+・workspaceにカイコ単一遺伝子リスト「BmSingleGeneList.txt」を新規作成
+
+・「BmTOP_mkorthlist.py」を新規作成
+ 「BmTOP.py」と「Blast_HitTable_orthfin_trimBC_allcond.py」で当該スクリプトを実行するよう仕様変更
+
+・「Blast_HitTable_orthfin_trimC.py」と「Blast_HitTable_orthfin_trimC23.py」を仕様変更
+　　TrimCで「tblastx_HitTable_THlisted_trimABC_orthlist.txt」、「tblastx_HitTable_sorted_trimABC_orthlist.txt」を出力しないようにした
+　これらはカイコ単一遺伝子リストと比較後（vsBmSG後）に出力されるようにする
+
+・BmTOP.pyを変更、「F:'_THlisted.txt'と'_sorted.txt'準備済」項目を追加
+　「G:exit」に変更
+
+・「BmTOP_path.py」を一部仕様変更（BmSG、notBmSGの移動）
+
+
+2019.07.12
+ver0.951
+
+・「BmSingleGeneList.txt」が誤ってblastnにより算出された結果であったため、tblastxによる結果に差し替えた
+
+（修正後）
+カイコGeneModel2017をクエリーにして、BmTOP(tblastx解析を選択)を行った結果のリストを、
+「BmSingleGeneList.txt」としてデフォルトで使用する
+　　（デフォルト設定で処理: Threshold1 = tblastx 1e-10, Threshold2 = score 100, e-value 1e-80, Threshold3 = 1e-80, 最後のステップである「カイコ単一遺伝子リストとの比較」は行わない）
+
+・「ListCompariser_vsBmSG」にバグがあり、出力結果が誤っていたため、修正
+（修正前）
+for rq in fq:
+    rq_spl = rq.split('\t')
+    for rdb in fdb:
+        rdb_spl = rdb.split('\t')
+        if rq_spl[1] in rdb_spl[0]: #カイコ単一遺伝子リストは、KWMTBOMO_IDをカラム0に記入すること！！
+            fw.write(rq)
+            countM += 1
+            break
+    if countM == 0:
+        fw3.write(rq)
+    　　　　fdb.seek(0) #sorted.txtにIDがなくて、下まで読んじゃった場合のみf.seek(0)する←※ここが誤り
+        #（あった場合は、IDは上から順にならんでるはずなので、f.seek(0)しなくて大丈夫）←※ここが誤り
+    countM = 0
+
+（修正後）
+for rq in fq:
+    rq_spl = rq.split('\t')
+    for rdb in fdb:
+        rdb_spl = rdb.split('\t')
+        if rq_spl[1] in rdb_spl[0]: #カイコ単一遺伝子リストは、KWMTBOMO_IDをカラム0に記入すること！！
+            fw.write(rq)
+            countM += 1
+            break
+    if countM == 0:
+        fw3.write(rq)
+    countM = 0
+    fdb.seek(0)
+
+・7:gene_plotterをメニューに追加
+
+
+[製作者情報]
+2019.07.13
+岩手大学連合農学研究科
+応用昆虫学研究室
+大野 瑞紀

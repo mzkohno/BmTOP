@@ -1,0 +1,9 @@
+[データベース化]
+makeblastdb -in ./KWMTBOMO.nucl.fa -dbtype nucl -parse_seqids
+
+[blastn]
+blastn -query ./Trinity.fasta -db ./KWMTBOMO.nucl.fa -evalue 1e-10 -outfmt 6 -out tblastx_HitTable.txt
+
+[tblastx]
+tblastx -query ./Trinity.fasta -db ./KWMTBOMO.nucl.fa -evalue 1e-10 -outfmt 6 -out tblastx_HitTable.txt
+

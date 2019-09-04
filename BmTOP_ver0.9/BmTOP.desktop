@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=BmTOP
+Comment=ver0.5
+Exec=/home/mizuki/Documents/Atom_workspace/BmTOP_ver0.9/programs_KWMTBOMO/BmTOP_init.sh
+Icon=/home/mizuki/Documents/Atom_workspace/BmTOP/programs_KWMTBOMO/BmTOP_icon.png
+Comment[ja_JP.eucJP]=ver0.9
