@@ -1,0 +1,59 @@
+<最初に行うこと>
+
+
+0.基本環境の構築
+
+ ・blast+(NCBI)の環境構築
+   デスクトップ環境でblast解析ができるようにしておく
+   (https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+
+ ・Python3 (>= Python 3.5.2 推奨)の環境構築
+
+ ・R (>= 3.4)の環境構築
+
+ ・Install karyoploteR（Rのスクリプトで実行）
+
+ ・gene_plotter.Rを「programs_KWMTBOMO」ディレクトリにダウンロード
+
+
+
+1.各種ファイルの準備
+(すべてworkspaceに用意する)
+
+ ・KWMTBOMO.gff3.txt
+   Silkbase_HPより,Bomo_gene_models.gff3をDLして、一行目を削除してKWMTBOMO.gff3.txtとして名前をつけて保存
+
+ ・KWMTBOMO.nucl.fa
+   Bomo_gene_models.nucl.faもSilkbase_HPよりDLしてKWMTBOMO.nucl.faにrename
+
+
+#BmTOP_init.shとBmTOP_path.shのパスを絶対パスで通す#
+
+2.programs_KWMTBOMOディレクトリの「BmTOP_init.sh」をテキストエディタで開く
+
+3.BmTOP_path.shまでの絶対パスを記入
+
+
+
+[linuxの場合]
+#シンボリックリンクとBmTOP_init.shのパスを絶対パスで通す#
+
+4.シンボリックリンクを右クリックして、BmTOP_init.shの絶対パスを記入
+
+5.シンボリックリンクをダブルクリックして、動けばOK！
+
+
+
+[WSL環境のUbuntu(in Windows10)の場合]
+#linux用のアイコン(.desktop)は使えないため、「BmTOP」と端末に打つと起動するように設定する#
+
+4.BmTOPファイル(windows_wslディレクトリ)に、BmTOP_init.shまでの絶対パスを記入
+
+5.BmTOP_ver***/windows_wslをカレントディレクトリにして、下記コマンドを実行する
+　sudo rm -f /usr/local/bin/BmTOP
+　sudo cp -f ./BmTOP /usr/local/bin
+　※/usr/local/binは、パスのつながっているところならどこでもよい
+
+6.readme_win_wsl.txtに従って、動けばOK！
+
+※gnome-terminalが起動しない場合は、BmTOPファイルのコマンドに「sudo」を付け足してトライしてみる

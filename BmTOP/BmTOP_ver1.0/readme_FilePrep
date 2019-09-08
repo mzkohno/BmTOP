@@ -1,0 +1,65 @@
+[全般]
+
+#準備が必要#
+<環境構築>
+ ・blast+(NCBI)
+   デスクトップ環境でblast解析ができるようにしておく
+   https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
+ ・Python3 (>= Python 3.5.2 推奨)
+
+
+
+[BmTOP]
+
+#準備が必要#
+<workspaceディレクトリ>
+ ・KWMTBOMO.gff3.txt......Silkbase_HPよりDL(Bomo_gene_models.gff3をrename)
+  -Trinity.fasta(assembled_data)から解析する場合
+   ・Trinity.fasta
+   ・KWMTBOMO.nucl.fa......Silkbase_HPよりDL(Bomo_gene_models.nucl.faをrename)
+  -blast_HitTable(blast結果表)を用いる場合
+   ・tblastx_HitTable.txt......*ファイル名を左記にご変更ください
+
+#配置済み#
+ ・BHTOF_threshold_指定表.txt......各種thresholdを指定する
+ ・Blastコマンド指定表.txt
+ ・BmSingleGeneList.txt
+
+
+
+[KWMT_desConecter]
+
+#準備が必要#
+<workspaceディレクトリ>
+ ・KWMTBOMO_IDの記入があるファイル
+
+#配置済み#
+ ・KWMTBOMO.desc.txt......Silkbase_HPのLibrary_Informationを参考に作成
+
+
+
+[List_compariser]
+
+#準備が必要#
+<workspaceディレクトリ>
+ ・比較に用いる2つの任意.txtファイル(queryと比較対象)
+
+
+
+[gene_plotter]
+
+#準備が必要#
+<環境構築>
+ ・R (>= 3.4)
+ ・Install karyoploteR
+<programs_KWMTBOMOディレクトリ>
+ ・gene_plotter.R (https://github.com/nkimoto/gene_plotterよりDL)
+<workspaceディレクトリ>
+ ・tblastx_HitTable_THlisted_trimABC_orthlist.txt
+
+#配置済み#
+ ・Length_Silkbase.Sheet1.tsv
+
+
+
+2019.09.08更新
