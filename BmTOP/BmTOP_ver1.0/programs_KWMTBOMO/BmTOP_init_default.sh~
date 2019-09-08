@@ -1,7 +1,0 @@
-# 最初に下記のパスを書き換えること!!
-#   パスは、絶対パスでないとダメ
-#   *相対パスだとシンボリックリンクからアクセスできない
-
-gnome-terminal -e "sh -c 'python3 [ここに絶対パスを記入]/BmTOP_path.py;exec bash'"
-
-#gnome-terminal -e "python3 /home/mizuki/Documents/Atom_workspace/BmTOP/programs_KWMTBOMO/BmTOP_path.py"
